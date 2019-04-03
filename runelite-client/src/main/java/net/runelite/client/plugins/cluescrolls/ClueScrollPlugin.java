@@ -178,7 +178,7 @@ public class ClueScrollPlugin extends Plugin
 	@Subscribe
 	public void onChatMessage(ChatMessage event)
 	{
-		if (event.getType() != ChatMessageType.SERVER && event.getType() != ChatMessageType.FILTERED)
+		if (event.getType() != ChatMessageType.GAMEMESSAGE && event.getType() != ChatMessageType.SPAM)
 		{
 			return;
 		}
@@ -608,7 +608,7 @@ public class ClueScrollPlugin extends Plugin
 
 				// Check impostors
 				final ObjectComposition comp = client.getObjectDefinition(object.getId());
-				final ObjectComposition impostor = comp.getImpostor();
+				final ObjectComposition impostor = comp.getImpostorIds() != null ? comp.getImpostor() : comp;
 
 				if (impostor != null && impostor.getId() == id)
 				{
